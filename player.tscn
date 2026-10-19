@@ -1,15 +1,21 @@
-[gd_scene format=3 uid="uid://ddwcrajynno0w"]
+[gd_scene load_steps=3 format=3 uid="uid://ddwcrajynno0w"]
 
-[node name="Node3D" type="Node3D"]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sh265"]
 
-[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_4flbx"]
+
+[node name="CharacterBody3D" type="CharacterBody3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_sh265")
 
 [node name="Node3D" type="Node3D" parent="."]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Node3D"]
+mesh = SubResource("CapsuleMesh_4flbx")
 
-[node name="Node3D2" type="Node3D" parent="."]
+[node name="Node3D2" type="Node3D" parent="Node3D"]
 
-[node name="Camera3D" type="Camera3D" parent="Node3D2"]
+[node name="Camera3D" type="Camera3D" parent="Node3D/Node3D2"]
 
-[node name="Marker3D" type="Marker3D" parent="Node3D2/Camera3D"]
+[node name="Marker3D" type="Marker3D" parent="Node3D/Node3D2/Camera3D"]
