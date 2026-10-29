@@ -1,16 +1,39 @@
-[gd_scene load_steps=4 format=3 uid="uid://wihvq0wad5c3"]
+[gd_scene load_steps=7 format=3 uid="uid://wihvq0wad5c3"]
 
 [ext_resource type="Script" uid="uid://de5t638kkcopg" path="res://target.gd" id="1_t2jmu"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_3hr3o"]
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_t2jmu"]
+radius = 0.3
+height = 1.2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t2jmu"]
+albedo_color = Color(0.664397, 0, 0.247738, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_t2jmu"]
+size = Vector3(0.8, 1.8, 0.8)
+
+[sub_resource type="SphereMesh" id="SphereMesh_e1yvt"]
+radius = 0.25
+height = 0.5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5ebp1"]
+albedo_color = Color(0.454902, 0, 1, 1)
+metallic = 0.5
 
 [node name="target" type="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 script = ExtResource("1_t2jmu")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("BoxMesh_3hr3o")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+mesh = SubResource("CapsuleMesh_t2jmu")
+surface_material_override/0 = SubResource("StandardMaterial3D_t2jmu")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
 shape = SubResource("BoxShape3D_t2jmu")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.55, 0)
+mesh = SubResource("SphereMesh_e1yvt")
+surface_material_override/0 = SubResource("StandardMaterial3D_5ebp1")
