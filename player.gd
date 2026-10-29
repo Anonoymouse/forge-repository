@@ -2,8 +2,10 @@ extends CharacterBody3D
 
 @export var speed := 6.0
 @export var mouse_sensitivity := 0.002
-
+var bullet_scene: PackedScene = preload("res://blasterbolt.tscn")
+@onready var muzzle: Marker3D = find_child("Muzzle", true, false)
 @onready var camera: Camera3D = find_child("Camera3D", true, false)
+@onready var crosshair: Label = find_child("Crosshair", true, false)
 
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 
@@ -20,7 +22,11 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		rotate_y(-event.relative.x * mouse_sensitivity)
 		camera.rotate_x(-event.relative.y * mouse_sensitivity)
-		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-80), deg_to_rad(80))
+		camera.rotation.x = clamp(
+			camera.rotation.x,
+			deg_to_rad(-80),
+			deg_to_rad(80)
+		)
 
 	if event.is_action_pressed("ui_cancel"):
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
@@ -42,16 +48,7 @@ func _physics_process(delta: float) -> void:
 
 
 func shoot() -> void:
-	var from := camera.global_position
-	var to := from - camera.global_transform.basis.z * 100.0
-
-	var query := PhysicsRayQueryParameters3D.create(from, to)
-	query.exclude = [get_rid()]
-
-	var result := get_world_3d().direct_space_state.intersect_ray(query)
-
-	if not result.is_empty():
-		print("Hit: ", result.collider.name)
-
-		if result.collider.has_method("hit"):
-			result.collider.hit()
+	var bullet = bullet_scene.instantiate()
+	get_tree().current_scene.add_child(bullet)
+	bullet.global_transform = muzzle.global_transform
+	bullet.set("shooter", self)

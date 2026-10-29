@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://ff6ht5agf7id"]
+
+[ext_resource type="Script" uid="uid://d33513xxxx1kl" path="res://blasterbolt.gd" id="1_b6m7i"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_b6m7i"]
+radius = 0.08
+height = 0.4
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5lp05"]
+albedo_color = Color(0.847059, 0.67451, 0.317647, 1)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_g6yil"]
+radius = 0.12
+
+[node name="Blasterbolt" type="Area3D"]
+script = ExtResource("1_b6m7i")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+mesh = SubResource("CapsuleMesh_b6m7i")
+surface_material_override/0 = SubResource("StandardMaterial3D_5lp05")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_g6yil")
