@@ -1,4 +1,5 @@
 extends CharacterBody3D
+
 @export var speed := 6.0
 @export var mouse_sensitivity := 0.002
 
@@ -6,11 +7,16 @@ extends CharacterBody3D
 
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 
+
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	camera.current = true
 
+
 func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("shoot"):
+		shoot()
+
 	if event is InputEventMouseMotion:
 		rotate_y(-event.relative.x * mouse_sensitivity)
 		camera.rotate_x(-event.relative.y * mouse_sensitivity)
@@ -18,6 +24,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 	if event.is_action_pressed("ui_cancel"):
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+
 
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
@@ -32,3 +39,19 @@ func _physics_process(delta: float) -> void:
 	velocity.z = direction.z * speed
 
 	move_and_slide()
+
+
+func shoot() -> void:
+	var from := camera.global_position
+	var to := from - camera.global_transform.basis.z * 100.0
+
+	var query := PhysicsRayQueryParameters3D.create(from, to)
+	query.exclude = [get_rid()]
+
+	var result := get_world_3d().direct_space_state.intersect_ray(query)
+
+	if not result.is_empty():
+		print("Hit: ", result.collider.name)
+
+		if result.collider.has_method("hit"):
+			result.collider.hit()

@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://c3gue76gskcx"]
+[gd_scene load_steps=5 format=3 uid="uid://c3gue76gskcx"]
 
 [ext_resource type="PackedScene" uid="uid://ddwcrajynno0w" path="res://player.tscn" id="1_aiegb"]
+[ext_resource type="PackedScene" uid="uid://wihvq0wad5c3" path="res://target.tscn" id="2_oqbmf"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_oqbmf"]
 size = Vector3(20, 1, 20)
@@ -24,3 +25,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.373412, 0)
 shape = SubResource("BoxShape3D_aiegb")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+
+[node name="target" parent="." instance=ExtResource("2_oqbmf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1, -3)
