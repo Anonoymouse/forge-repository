@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://ddwcrajynno0w"]
+[gd_scene load_steps=7 format=3 uid="uid://ddwcrajynno0w"]
 
 [ext_resource type="Script" uid="uid://bofqkn3vfu11l" path="res://player.gd" id="1_4flbx"]
+[ext_resource type="PackedScene" uid="uid://cc466k4lpe0ir" path="res://Models/odqbz-97-ar-a1-97/source/QBZ-97-AR-A1.fbx" id="2_hqtel"]
 [ext_resource type="PackedScene" uid="uid://ff6ht5agf7id" path="res://blasterbolt.tscn" id="2_onrkg"]
+[ext_resource type="PackedScene" uid="uid://6xw6gtrnbwfp" path="res://Models/low-poly-kimber-k6s/source/Kimber K6S.blend" id="3_sweqy"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sh265"]
 
@@ -22,11 +24,33 @@ mesh = SubResource("CapsuleMesh_4flbx")
 [node name="Node3D2" type="Node3D" parent="Node3D"]
 
 [node name="Camera3D" type="Camera3D" parent="Node3D/Node3D2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.48074, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0357825, 0)
 h_offset = 1.5
 
 [node name="Muzzle" type="Marker3D" parent="Node3D/Node3D2/Camera3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.24372, 0, -0.5)
+visible = false
+
+[node name="StandardWeapon" type="MeshInstance3D" parent="Node3D/Node3D2/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, -0.6)
+
+[node name="QBZ-97-AR-A1" parent="Node3D/Node3D2/Camera3D/StandardWeapon" instance=ExtResource("2_hqtel")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.57746, 0, 0.172081)
+
+[node name="Light" parent="Node3D/Node3D2/Camera3D/StandardWeapon/QBZ-97-AR-A1" index="6"]
+visible = false
+
+[node name="RapidWeapon" type="MeshInstance3D" parent="Node3D/Node3D2/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0563146, -0.8)
+
+[node name="Kimber K6S" parent="Node3D/Node3D2/Camera3D/RapidWeapon" instance=ExtResource("3_sweqy")]
+transform = Transform3D(-4.37114e-09, 0, 0.1, 0, 0.1, 0, -0.1, 0, -4.37114e-09, 1.33762, -0.129331, 0.301722)
+
+[node name="Light" parent="Node3D/Node3D2/Camera3D/RapidWeapon/Kimber K6S" index="0"]
+visible = false
+
+[node name="Camera" parent="Node3D/Node3D2/Camera3D/RapidWeapon/Kimber K6S" index="1"]
+visible = false
 
 [node name="HUD" type="CanvasLayer" parent="."]
 
@@ -47,4 +71,13 @@ text = "+"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="HealthLabel" type="Label" parent="HUD"]
+offset_right = 101.0
+offset_bottom = 52.0
+text = "Health: 5"
+
 [node name="Blasterbolt" parent="." instance=ExtResource("2_onrkg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.33462, 0, 0)
+
+[editable path="Node3D/Node3D2/Camera3D/StandardWeapon/QBZ-97-AR-A1"]
+[editable path="Node3D/Node3D2/Camera3D/RapidWeapon/Kimber K6S"]

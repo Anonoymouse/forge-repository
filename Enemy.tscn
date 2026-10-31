@@ -1,0 +1,42 @@
+[gd_scene load_steps=7 format=3 uid="uid://d2cd7s2fikmsj"]
+
+[ext_resource type="Script" uid="uid://dfweuguj4ppyl" path="res://enemy.gd" id="1_tt7e2"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_t2jmu"]
+radius = 0.3
+height = 1.2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t2jmu"]
+albedo_color = Color(0.664397, 0, 0.247738, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_t2jmu"]
+size = Vector3(0.8, 1.8, 0.8)
+
+[sub_resource type="SphereMesh" id="SphereMesh_e1yvt"]
+radius = 0.25
+height = 0.5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5ebp1"]
+albedo_color = Color(0.454902, 0, 1, 1)
+metallic = 0.5
+
+[node name="Enemy" type="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+script = ExtResource("1_tt7e2")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+mesh = SubResource("CapsuleMesh_t2jmu")
+surface_material_override/0 = SubResource("StandardMaterial3D_t2jmu")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+shape = SubResource("BoxShape3D_t2jmu")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.55, 0)
+mesh = SubResource("SphereMesh_e1yvt")
+surface_material_override/0 = SubResource("StandardMaterial3D_5ebp1")
+
+[node name="EnemyMuzzle" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.312799, 0.285617, 0)
