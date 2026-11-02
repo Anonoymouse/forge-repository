@@ -6,6 +6,10 @@ extends CharacterBody3D
 @export var mouse_sensitivity := 0.002
 @onready var timer_label: Label = find_child("TimerLabel", true, false)
 @onready var win_label: Label = find_child("WinLabel", true, false)
+@export var controller_sensitivity := 2.0
+@export_range(1.0, 12.0, 0.5) var jump_velocity := 5.5
+@export_range(1, 10, 1) var standard_weapon_damage: int = 2
+@export_range(1, 10, 1) var rapid_weapon_damage: int = 1
 
 var elapsed_time := 0.0
 var course_finished := false
@@ -86,7 +90,7 @@ func _physics_process(delta: float) -> void:
 		velocity.y -= gravity * delta
 
 	if Input.is_action_just_pressed("jump") and is_on_floor():
-		velocity.y = 5.5
+		velocity.y = jump_velocity
 
 	var is_crouching := Input.is_action_pressed("crouch")
 	var capsule := body_shape.shape as CapsuleShape3D
@@ -103,7 +107,17 @@ func _physics_process(delta: float) -> void:
 	var current_speed := speed
 	if is_crouching:
 		current_speed = crouch_speed
+	var look_input := Input.get_vector(
+		"look_left", "look_right", "look_up", "look_down"
+	)
 
+	rotate_y(-look_input.x * controller_sensitivity * delta)
+	camera.rotate_x(-look_input.y * controller_sensitivity * delta)
+	camera.rotation.x = clamp(
+		camera.rotation.x,
+		deg_to_rad(-80),
+		deg_to_rad(80)
+	)
 	var input_2d := Input.get_vector(
 		"move_left", "move_right", "move_forward", "move_back"
 	)
@@ -132,18 +146,26 @@ func shoot() -> void:
 		aim_end = result.position
 
 	var bullet = bullet_scene.instantiate()
+	if current_weapon == 1:
+		bullet.set("damage", standard_weapon_damage)
+	else:
+		bullet.set("damage", rapid_weapon_damage)
 	get_tree().current_scene.add_child(bullet)
 	bullet.global_position = muzzle.global_position
 	bullet.look_at(aim_end, Vector3.UP)
 	bullet.set("shooter", self)
 	
-func hit() -> void:
-	health = maxi(health - 1, 0)
+func take_damage(damage_amount: int) -> void:
+	health = maxi(health - damage_amount, 0)
 	update_health_display()
 	print("Player health: ", health)
 
 	if health == 0:
 		print("Player defeated")
+
+
+func hit() -> void:
+	take_damage(1)
 
 
 func update_health_display() -> void:

@@ -5,6 +5,7 @@ extends Area3D
 
 var shooter: Node3D
 var time_left := 0.0
+var damage := 1
 
 
 func _ready() -> void:
@@ -24,7 +25,9 @@ func _on_body_entered(body: Node3D) -> void:
 	if body == shooter:
 		return
 
-	if body.has_method("hit"):
+	if body.has_method("take_damage"):
+		body.take_damage(damage)
+	elif body.has_method("hit"):
 		body.hit()
 
 	queue_free()

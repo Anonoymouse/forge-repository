@@ -1,6 +1,8 @@
 extends StaticBody3D
 
 @export var fire_interval := 2.0
+@export var attack_range := 10.0
+@export_range(1, 10, 1) var attack_damage: int = 1
 @export var health := 3
 
 var bullet_scene: PackedScene = preload("res://blasterbolt.tscn")
@@ -20,6 +22,12 @@ func _physics_process(delta: float) -> void:
 	if player == null:
 		return
 
+	var distance_to_player := global_position.distance_to(player.global_position)
+
+	if distance_to_player > attack_range:
+		fire_timer = fire_interval
+		return
+
 	fire_timer -= delta
 
 	if fire_timer <= 0.0:
@@ -29,16 +37,17 @@ func _physics_process(delta: float) -> void:
 
 func shoot() -> void:
 	var bullet = bullet_scene.instantiate()
-	get_tree().current_scene.add_child(bullet)
-
-	bullet.global_position = enemy_muzzle.global_position
-	bullet.look_at(player.global_position + Vector3(0, 1, 0), Vector3.UP)
+	bullet.set("damage", attack_damage)
 	bullet.set("shooter", self)
 
+	get_tree().current_scene.add_child(bullet)
+	bullet.global_position = enemy_muzzle.global_position
+	bullet.look_at(player.global_position + Vector3(0, 1, 0), Vector3.UP)
 
-func hit() -> void:
-	health -= 1
-	print("Enemy hit! Health: ", health)
+
+func take_damage(damage_amount: int) -> void:
+	health -= damage_amount
+	print("Enemy health: ", health)
 
 	if health <= 0:
 		queue_free()
