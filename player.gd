@@ -4,7 +4,11 @@ extends CharacterBody3D
 @export var crouch_speed := 3.0
 @export var crouch_height := 1.2
 @export var mouse_sensitivity := 0.002
+@onready var timer_label: Label = find_child("TimerLabel", true, false)
+@onready var win_label: Label = find_child("WinLabel", true, false)
 
+var elapsed_time := 0.0
+var course_finished := false
 var bullet_scene: PackedScene = preload("res://blasterbolt.tscn")
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 
@@ -70,6 +74,14 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func _physics_process(delta: float) -> void:
+
+	if course_finished:
+		return
+
+	elapsed_time += delta
+
+	if timer_label != null:
+		timer_label.text = "Time: " + format_time(int(elapsed_time))
 	if not is_on_floor():
 		velocity.y -= gravity * delta
 
@@ -137,3 +149,22 @@ func hit() -> void:
 func update_health_display() -> void:
 	if health_label != null:
 		health_label.text = "Health: " + str(health)
+func format_time(total_seconds: int) -> String:
+	var minutes := int(total_seconds / 60)
+	var seconds := total_seconds % 60
+	return "%02d:%02d" % [minutes, seconds]
+
+
+func finish_course() -> void:
+	if course_finished:
+		return
+
+	course_finished = true
+	var final_time := format_time(int(elapsed_time))
+
+	if timer_label != null:
+		timer_label.text = "Time: " + final_time
+
+	if win_label != null:
+		win_label.text = "COURSE COMPLETE!\nFinal time: " + final_time
+		win_label.visible = true

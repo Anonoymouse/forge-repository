@@ -76,6 +76,23 @@ offset_right = 101.0
 offset_bottom = 52.0
 text = "Health: 5"
 
+[node name="WinLabel" type="Label" parent="HUD"]
+visible = false
+offset_left = 383.0
+offset_top = 119.0
+offset_right = 717.0
+offset_bottom = 352.0
+text = "Course Complete"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TimerLabel" type="Label" parent="HUD"]
+offset_left = 14.0
+offset_top = 34.0
+offset_right = 102.0
+offset_bottom = 57.0
+text = "Time: 00:00"
+
 [node name="Blasterbolt" parent="." instance=ExtResource("2_onrkg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.33462, 0, 0)
 

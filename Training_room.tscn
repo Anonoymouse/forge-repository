@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://cd1r8o1uqsnpr"]
+[gd_scene load_steps=9 format=3 uid="uid://cd1r8o1uqsnpr"]
 
 [ext_resource type="PackedScene" uid="uid://ddwcrajynno0w" path="res://player.tscn" id="1_johf5"]
 [ext_resource type="PackedScene" uid="uid://d2cd7s2fikmsj" path="res://Enemy.tscn" id="2_johf5"]
+[ext_resource type="PackedScene" uid="uid://furvyh1e5qfk" path="res://GoalPost.tscn" id="3_7rpah"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_oqbmf"]
 size = Vector3(100, 1, 50)
@@ -79,3 +80,6 @@ shape = SubResource("BoxShape3D_bd7ek")
 
 [node name="Enemy" parent="." instance=ExtResource("2_johf5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.7293, 0.893723, 0)
+
+[node name="Goal" parent="." instance=ExtResource("3_7rpah")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.3238, 0.126588, 0.926002)
