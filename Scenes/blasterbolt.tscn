@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://ff6ht5agf7id"]
 
-[ext_resource type="Script" uid="uid://d33513xxxx1kl" path="res://blasterbolt.gd" id="1_b6m7i"]
+[ext_resource type="Script" uid="uid://d33513xxxx1kl" path="res://Scripts/blasterbolt.gd" id="1_6w735"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_b6m7i"]
 radius = 0.08
@@ -13,7 +13,7 @@ albedo_color = Color(0.847059, 0.67451, 0.317647, 1)
 radius = 0.12
 
 [node name="Blasterbolt" type="Area3D"]
-script = ExtResource("1_b6m7i")
+script = ExtResource("1_6w735")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)

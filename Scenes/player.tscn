@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://ddwcrajynno0w"]
 
-[ext_resource type="Script" uid="uid://bofqkn3vfu11l" path="res://player.gd" id="1_4flbx"]
+[ext_resource type="Script" uid="uid://bofqkn3vfu11l" path="res://Scripts/player.gd" id="1_4flbx"]
 [ext_resource type="PackedScene" uid="uid://cc466k4lpe0ir" path="res://Models/odqbz-97-ar-a1-97/source/QBZ-97-AR-A1.fbx" id="2_hqtel"]
-[ext_resource type="PackedScene" uid="uid://ff6ht5agf7id" path="res://blasterbolt.tscn" id="2_onrkg"]
+[ext_resource type="PackedScene" uid="uid://ff6ht5agf7id" path="res://Scenes/blasterbolt.tscn" id="2_onrkg"]
 [ext_resource type="PackedScene" uid="uid://6xw6gtrnbwfp" path="res://Models/low-poly-kimber-k6s/source/Kimber K6S.blend" id="3_sweqy"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sh265"]
@@ -93,6 +93,15 @@ offset_top = 34.0
 offset_right = 102.0
 offset_bottom = 57.0
 text = "Time: 00:00"
+
+[node name="GameOverLabel" type="Label" parent="HUD"]
+offset_left = 510.0
+offset_top = 227.0
+offset_right = 644.0
+offset_bottom = 276.0
+text = "Game Over
+Press R to restart"
+horizontal_alignment = 1
 
 [node name="Blasterbolt" parent="." instance=ExtResource("2_onrkg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.33462, 0, 0)

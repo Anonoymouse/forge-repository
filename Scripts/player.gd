@@ -10,12 +10,12 @@ extends CharacterBody3D
 @export_range(1.0, 12.0, 0.5) var jump_velocity := 5.5
 @export_range(1, 10, 1) var standard_weapon_damage: int = 2
 @export_range(1, 10, 1) var rapid_weapon_damage: int = 1
-
+var player_dead := false
+@onready var game_over_label: Label = find_child("GameOverLabel", true, false)
 var elapsed_time := 0.0
 var course_finished := false
-var bullet_scene: PackedScene = preload("res://blasterbolt.tscn")
+var bullet_scene: PackedScene = preload("res://Scenes/blasterbolt.tscn")
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
-
 var current_weapon := 1
 var fire_cooldown := 0.0
 
@@ -38,7 +38,8 @@ func _ready() -> void:
 	camera.current = true
 	health = max_health
 	update_health_display()
-	
+	if game_over_label != null:
+		game_over_label.visible = false
 	standard_weapon.visible = true
 	rapid_weapon.visible = false
 
@@ -49,6 +50,10 @@ func _ready() -> void:
 
 
 func _unhandled_input(event: InputEvent) -> void:
+	if player_dead:
+		if event.is_action_pressed("restart"):
+			get_tree().reload_current_scene()
+		return
 	if event is InputEventKey and event.pressed and not event.echo and event.keycode == KEY_2:
 		if current_weapon == 1:
 			current_weapon = 2
@@ -79,7 +84,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _physics_process(delta: float) -> void:
 
-	if course_finished:
+	if course_finished or player_dead:
 		return
 
 	elapsed_time += delta
@@ -156,12 +161,21 @@ func shoot() -> void:
 	bullet.set("shooter", self)
 	
 func take_damage(damage_amount: int) -> void:
+	if player_dead or course_finished:
+		return
+
 	health = maxi(health - damage_amount, 0)
 	update_health_display()
 	print("Player health: ", health)
 
 	if health == 0:
-		print("Player defeated")
+		player_dead = true
+
+		if game_over_label != null:
+			game_over_label.text = "DEFEATED!\nPress R or Start to restart"
+			game_over_label.visible = true
+
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 
 func hit() -> void:

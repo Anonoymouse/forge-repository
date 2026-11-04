@@ -1,6 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://wihvq0wad5c3"]
+[gd_scene load_steps=7 format=3 uid="uid://d2cd7s2fikmsj"]
 
-[ext_resource type="Script" uid="uid://de5t638kkcopg" path="res://target.gd" id="1_t2jmu"]
+[ext_resource type="Script" uid="uid://dfweuguj4ppyl" path="res://Scripts/enemy.gd" id="1_tt7e2"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_t2jmu"]
 radius = 0.3
@@ -20,12 +20,13 @@ height = 0.5
 albedo_color = Color(0.454902, 0, 1, 1)
 metallic = 0.5
 
-[node name="target" type="StaticBody3D"]
+[node name="Enemy" type="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-script = ExtResource("1_t2jmu")
+script = ExtResource("1_tt7e2")
+fire_interval = 0.5
+attack_range = 15.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
 mesh = SubResource("CapsuleMesh_t2jmu")
 surface_material_override/0 = SubResource("StandardMaterial3D_t2jmu")
 
@@ -37,3 +38,6 @@ shape = SubResource("BoxShape3D_t2jmu")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.55, 0)
 mesh = SubResource("SphereMesh_e1yvt")
 surface_material_override/0 = SubResource("StandardMaterial3D_5ebp1")
+
+[node name="EnemyMuzzle" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.312799, 0.285617, 0)
