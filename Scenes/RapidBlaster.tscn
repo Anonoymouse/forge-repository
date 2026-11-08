@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://dcqke7e3d23mo"]
+
+[ext_resource type="PackedScene" uid="uid://kfi5cg4ri7yr" path="res://Models/low-poly-pistol-blaster/source/blasterB.fbx" id="1_057i2"]
+
+[node name="blasterB" unique_id=68051614 instance=ExtResource("1_057i2")]

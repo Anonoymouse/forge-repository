@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://c8kl8v2xo4uww"]
+
+[ext_resource type="PackedScene" uid="uid://cc466k4lpe0ir" path="res://Models/odqbz-97-ar-a1-97/source/QBZ-97-AR-A1.fbx" id="1_2yhfq"]
+
+[node name="QBZ-97-AR-A1" unique_id=960872622 instance=ExtResource("1_2yhfq")]
+
+[node name="Light" parent="." index="6" unique_id=593566478]
+visible = false

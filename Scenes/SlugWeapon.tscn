@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://cxk40i2e8vqd5"]
+
+[ext_resource type="PackedScene" uid="uid://mei84qxfwvba" path="res://Models/low-poly_simeon_north_model_1826/scene.gltf" id="1_dchp7"]
+
+[node name="Sketchfab_Scene" unique_id=276112876 instance=ExtResource("1_dchp7")]
+transform = Transform3D(0.021819735, 0, 0.4992738, 0, 0.24969016, 0, -0.4044118, 0, 0.026937945, 0, 0, 0)

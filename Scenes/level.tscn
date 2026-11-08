@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://dvm2q3jxo1b5o"]
+
+[ext_resource type="PackedScene" uid="uid://ddwcrajynno0w" path="res://Scenes/player.tscn" id="1_u52ul"]
+
+[sub_resource type="Gradient" id="Gradient_0b4ue"]
+offsets = PackedFloat32Array(0, 0.48314607, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.30337077, 0.30337077, 0.30337077, 1, 1, 1, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_oi3di"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_vonw3"]
+noise = SubResource("FastNoiseLite_oi3di")
+color_ramp = SubResource("Gradient_0b4ue")
+seamless = true
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_lq2v0"]
+sky_top_color = Color(0.29473943, 0.42952493, 0.7644229, 1)
+sky_horizon_color = Color(0.4432346, 0.6999892, 0.7728087, 1)
+sky_cover = SubResource("NoiseTexture2D_vonw3")
+
+[sub_resource type="Sky" id="Sky_l2r06"]
+sky_material = SubResource("ProceduralSkyMaterial_lq2v0")
+
+[sub_resource type="Environment" id="Environment_btjy6"]
+background_mode = 2
+sky = SubResource("Sky_l2r06")
+
+[sub_resource type="BoxMesh" id="BoxMesh_l2r06"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_btjy6"]
+
+[node name="Node3D" type="Node3D" unique_id=315500447]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1028063659]
+environment = SubResource("Environment_btjy6")
+
+[node name="CharacterBody3D" parent="." unique_id=196685654 instance=ExtResource("1_u52ul")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25115812, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=98063027]
+transform = Transform3D(5.229468, 0, 0, 0, 0.36684668, 0, 0, 0, 2.5315094, -0.020930946, -1.165439, 0.015448809)
+mesh = SubResource("BoxMesh_l2r06")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D" unique_id=2062143988]
+transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0.26079535, 0)
+shape = SubResource("BoxShape3D_btjy6")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1305615953]
+transform = Transform3D(1, 0, 0, 0, 0.67430234, 0.73845536, 0, -0.73845536, 0.67430234, 0, 0, 0)
+light_color = Color(1, 1, 0.78039217, 1)
+shadow_enabled = true
