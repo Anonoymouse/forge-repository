@@ -1,51 +1,62 @@
-[gd_scene format=3 uid="uid://dvm2q3jxo1b5o"]
+[gd_scene format=3 uid="uid://bow5lwykhfdk4"]
 
-[ext_resource type="PackedScene" uid="uid://ddwcrajynno0w" path="res://Scenes/player.tscn" id="1_u52ul"]
+[ext_resource type="Script" uid="uid://b0sqvaun6b41j" path="res://fall_death_zone.gd" id="1_0ba56"]
+[ext_resource type="PackedScene" uid="uid://ddwcrajynno0w" path="res://Scenes/player.tscn" id="2_vsvp5"]
 
-[sub_resource type="Gradient" id="Gradient_0b4ue"]
-offsets = PackedFloat32Array(0, 0.48314607, 1)
-colors = PackedColorArray(0, 0, 0, 1, 0.30337077, 0.30337077, 0.30337077, 1, 1, 1, 1, 1)
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0ba56"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_oi3di"]
+[sub_resource type="Sky" id="Sky_vsvp5"]
+sky_material = SubResource("ProceduralSkyMaterial_0ba56")
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_vonw3"]
-noise = SubResource("FastNoiseLite_oi3di")
-color_ramp = SubResource("Gradient_0b4ue")
-seamless = true
-
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_lq2v0"]
-sky_top_color = Color(0.29473943, 0.42952493, 0.7644229, 1)
-sky_horizon_color = Color(0.4432346, 0.6999892, 0.7728087, 1)
-sky_cover = SubResource("NoiseTexture2D_vonw3")
-
-[sub_resource type="Sky" id="Sky_l2r06"]
-sky_material = SubResource("ProceduralSkyMaterial_lq2v0")
-
-[sub_resource type="Environment" id="Environment_btjy6"]
+[sub_resource type="Environment" id="Environment_8rbpu"]
 background_mode = 2
-sky = SubResource("Sky_l2r06")
-
-[sub_resource type="BoxMesh" id="BoxMesh_l2r06"]
+sky = SubResource("Sky_vsvp5")
+glow_enabled = true
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_btjy6"]
+size = Vector3(100, 1, 100)
 
-[node name="Node3D" type="Node3D" unique_id=315500447]
+[sub_resource type="BoxMesh" id="BoxMesh_btjy6"]
+size = Vector3(8, 0.5, 8)
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1028063659]
-environment = SubResource("Environment_btjy6")
+[sub_resource type="BoxShape3D" id="BoxShape3D_l2r06"]
+size = Vector3(8, 0.5, 8)
 
-[node name="CharacterBody3D" parent="." unique_id=196685654 instance=ExtResource("1_u52ul")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25115812, 0)
+[node name="Node3D" type="Node3D" unique_id=1671930256]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=98063027]
-transform = Transform3D(5.229468, 0, 0, 0, 0.36684668, 0, 0, 0, 2.5315094, -0.020930946, -1.165439, 0.015448809)
-mesh = SubResource("BoxMesh_l2r06")
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=519034298]
+environment = SubResource("Environment_8rbpu")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D" unique_id=2062143988]
-transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0.26079535, 0)
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1253542403]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="FallDeathZone" type="Area3D" parent="." unique_id=1818606371]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -10, 0)
+script = ExtResource("1_0ba56")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FallDeathZone" unique_id=508423541]
 shape = SubResource("BoxShape3D_btjy6")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1305615953]
-transform = Transform3D(1, 0, 0, 0, 0.67430234, 0.73845536, 0, -0.73845536, 0.67430234, 0, 0, 0)
-light_color = Color(1, 1, 0.78039217, 1)
-shadow_enabled = true
+[node name="StartingPlatform" type="StaticBody3D" parent="." unique_id=464651841]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StartingPlatform" unique_id=1804386091]
+mesh = SubResource("BoxMesh_btjy6")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StartingPlatform" unique_id=674647777]
+shape = SubResource("BoxShape3D_l2r06")
+
+[node name="JumpPlatform" type="StaticBody3D" parent="." unique_id=1988871009]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, -10)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="JumpPlatform" unique_id=1953388603]
+mesh = SubResource("BoxMesh_btjy6")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="JumpPlatform" unique_id=880420475]
+shape = SubResource("BoxShape3D_l2r06")
+
+[node name="CharacterBody3D" parent="." unique_id=196685654 instance=ExtResource("2_vsvp5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.023822308, 0.8546926, 0)

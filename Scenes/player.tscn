@@ -2,67 +2,39 @@
 
 [ext_resource type="Script" uid="uid://bofqkn3vfu11l" path="res://Scripts/player.gd" id="1_4flbx"]
 [ext_resource type="Resource" uid="uid://bd3kpdy7nktu0" path="res://Weapons/standard_blaster.tres" id="2_3smsa"]
-[ext_resource type="PackedScene" uid="uid://cc466k4lpe0ir" path="res://Models/odqbz-97-ar-a1-97/source/QBZ-97-AR-A1.fbx" id="2_hqtel"]
 [ext_resource type="PackedScene" uid="uid://ff6ht5agf7id" path="res://Scenes/blasterbolt.tscn" id="2_onrkg"]
 [ext_resource type="Resource" uid="uid://bue2ov1gndrk4" path="res://Weapons/RapidWeapon.tres" id="3_8erm5"]
-[ext_resource type="PackedScene" uid="uid://kfi5cg4ri7yr" path="res://Models/low-poly-pistol-blaster/source/blasterB.fbx" id="4_fkybt"]
 [ext_resource type="PackedScene" uid="uid://byomow36am50v" path="res://Models/character/scene.gltf" id="4_vgqql"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sh265"]
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_4flbx"]
-
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_vgqql"]
 
 [node name="CharacterBody3D" type="CharacterBody3D" unique_id=196685654]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.07482076, 0, 0)
 script = ExtResource("1_4flbx")
 starting_weapon_slot_1 = ExtResource("2_3smsa")
 starting_weapon_slot_2 = ExtResource("3_8erm5")
 speed = 7.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2113481688]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.0110211, 0, 0.39496207)
 shape = SubResource("CapsuleShape3D_sh265")
 
-[node name="Sketchfab_Scene" parent="CollisionShape3D" unique_id=172665110 instance=ExtResource("4_vgqql")]
-transform = Transform3D(-0.96034557, 0, -0.001466991, 0, 0.62380946, 0, 0.0014089018, 0, -0.99994075, 0, -0.86550736, 0)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D" unique_id=1674964076]
-visible = false
-mesh = SubResource("CapsuleMesh_4flbx")
-skeleton = NodePath("")
+[node name="Sketchfab_Scene" parent="." unique_id=172665110 instance=ExtResource("4_vgqql")]
+transform = Transform3D(-0.96034557, 0, -0.0014670547, 0, 0.62380946, 0, 0.0014089629, 0, -0.99994075, 0, -0.86550736, 0)
 
 [node name="Node3D2" type="Node3D" parent="." unique_id=1406266176]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.83155036, -0.25103903)
 
 [node name="Camera3D" type="Camera3D" parent="Node3D2" unique_id=845154830]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5758703, 0.8828085, -0.060472727)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.40239668)
 attributes = SubResource("CameraAttributesPractical_vgqql")
-h_offset = 1.5
-
-[node name="Muzzle" type="Marker3D" parent="Node3D2/Camera3D" unique_id=156292826]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4261599, -0.2364682, -0.5)
-visible = false
-
-[node name="StandardWeapon" type="MeshInstance3D" parent="Node3D2/Camera3D" unique_id=576943636]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5371566, -0.31176084, -0.6)
-visible = false
-
-[node name="QBZ-97-AR-A1" parent="Node3D2/Camera3D/StandardWeapon" unique_id=1766990021 instance=ExtResource("2_hqtel")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0426736, 0, 0)
-
-[node name="Light" parent="Node3D2/Camera3D/StandardWeapon/QBZ-97-AR-A1" index="6" unique_id=593566478]
-visible = false
-
-[node name="RapidWeapon" type="MeshInstance3D" parent="Node3D2/Camera3D" unique_id=2073923892]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.8144913, -0.056314588, -0.8)
-visible = false
-
-[node name="blasterB" parent="Node3D2/Camera3D/RapidWeapon" unique_id=68051614 instance=ExtResource("4_fkybt")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5214512, -0.24915898, 0)
 
 [node name="WeaponHolder" type="Node3D" parent="Node3D2/Camera3D" unique_id=1435713465]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3906789, -0.356215, -0.8633307)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.35, -0.25, -0.6)
+
+[node name="Muzzle" type="Marker3D" parent="Node3D2/Camera3D" unique_id=156292826]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.093134046, -0.2364682, -0.5)
+visible = false
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=1417971934]
 
@@ -137,6 +109,5 @@ offset_bottom = 331.0
 text = "Play again"
 
 [node name="Blasterbolt" parent="." unique_id=1815200348 instance=ExtResource("2_onrkg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.0468366, 0, 1.6454988)
-
-[editable path="Node3D2/Camera3D/StandardWeapon/QBZ-97-AR-A1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.029815435, 1.2862558, -0.4223625)
+visible = false

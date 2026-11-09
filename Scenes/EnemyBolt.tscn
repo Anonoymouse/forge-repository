@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://toqolnk2qdv1"]
+
+[ext_resource type="Script" uid="uid://bmlxwudsqklav" path="res://Scripts/EnemyBolt.gd" id="1_0i1dw"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_btjy6"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l2r06"]
+albedo_color = Color(0.7006764, 2.6183128e-05, 0.29109126, 1)
+
+[node name="EnemyBolt" type="Node3D" unique_id=93718609]
+script = ExtResource("1_0i1dw")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1562394445]
+transform = Transform3D(0.12, 0, 0, 0, 0.12, 0, 0, 0, 0.12, 0, 0, 0)
+mesh = SubResource("SphereMesh_btjy6")
+surface_material_override/0 = SubResource("StandardMaterial3D_l2r06")

@@ -3,3 +3,6 @@
 [ext_resource type="PackedScene" uid="uid://kfi5cg4ri7yr" path="res://Models/low-poly-pistol-blaster/source/blasterB.fbx" id="1_057i2"]
 
 [node name="blasterB" unique_id=68051614 instance=ExtResource("1_057i2")]
+
+[node name="blasterB" parent="." index="0" unique_id=334596381]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)

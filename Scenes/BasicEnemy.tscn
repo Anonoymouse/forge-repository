@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://j2t7rj61e1lp"]
+
+[ext_resource type="Script" uid="uid://c7cdcmgpglv5v" path="res://Scripts/BasicEnemy.gd" id="1_6njx4"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_btjy6"]
+radius = 0.45
+height = 1.8
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_l2r06"]
+radius = 0.45
+height = 1.8
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0i1dw"]
+albedo_color = Color(0.25882354, 0.38431373, 0, 1)
+
+[node name="BasicEnemy" type="StaticBody3D" unique_id=536068101]
+script = ExtResource("1_6njx4")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=579990672]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+shape = SubResource("CapsuleShape3D_btjy6")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=2103476083]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+mesh = SubResource("CapsuleMesh_l2r06")
+surface_material_override/0 = SubResource("StandardMaterial3D_0i1dw")
+
+[node name="EnemyMuzzle" type="Marker3D" parent="." unique_id=1091637195]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1, -0.5)

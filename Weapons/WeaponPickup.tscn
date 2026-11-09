@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dgjoruvrdkq3"]
 
-[ext_resource type="Script" uid="uid://2e7a0jy6jqle" path="res://weapon_pickup.gd" id="1_2sv3w"]
+[ext_resource type="Script" uid="uid://2e7a0jy6jqle" path="res://Scripts/weapon_pickup.gd" id="1_2sv3w"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_btjy6"]
 radius = 0.8

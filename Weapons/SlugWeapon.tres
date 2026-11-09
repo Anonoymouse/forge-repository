@@ -13,5 +13,4 @@ damage = 5
 weapon_range = 10.0
 fire_interval = 1.02
 magazine_size = 2
-reload_duration = 2.0
 metadata/_custom_type_script = "uid://b1bj8wybi2rkf"
