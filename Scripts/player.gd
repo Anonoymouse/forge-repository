@@ -115,7 +115,12 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("switch_weapon") and not is_reloading:
 		_select_weapon_slot(1 - active_slot)
 
-	if event is InputEventKey and event.pressed and not event.echo and event.keycode == KEY_R:
+	if event.is_action_pressed("reload") or (
+		event is InputEventKey
+		and event.pressed
+		and not event.echo
+		and event.keycode == KEY_R
+	):
 		start_reload()
 
 	if event is InputEventMouseMotion:
@@ -257,6 +262,19 @@ func _physics_process(delta: float) -> void:
 		fire_cooldown = current_weapon.fire_interval
 
 	move_and_slide()
+
+	for i in get_slide_collision_count():
+		var collision := get_slide_collision(i)
+		var body := collision.get_collider()
+
+		if body is RigidBody3D:
+			var push_direction := -collision.get_normal()
+			push_direction.y = 0.0
+
+			if push_direction.length_squared() > 0.001:
+				body.apply_central_impulse(
+					push_direction.normalized() * 1.5
+				)
 
 
 func _select_weapon_slot(slot_index: int) -> void:

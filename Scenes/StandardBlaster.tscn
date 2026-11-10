@@ -1,8 +1,6 @@
-[gd_scene format=3 uid="uid://c8kl8v2xo4uww"]
+[gd_scene format=3 uid="uid://xfnguwv4y1e6"]
 
-[ext_resource type="PackedScene" uid="uid://cc466k4lpe0ir" path="res://Models/odqbz-97-ar-a1-97/source/QBZ-97-AR-A1.fbx" id="1_2yhfq"]
+[ext_resource type="PackedScene" uid="uid://dm7mtythi0hxg" path="res://Models/E-11.fbx" id="1_g7yy0"]
 
-[node name="QBZ-97-AR-A1" unique_id=960872622 instance=ExtResource("1_2yhfq")]
-
-[node name="Light" parent="." index="6" unique_id=593566478]
-visible = false
+[node name="E-11" unique_id=1638429995 instance=ExtResource("1_g7yy0")]
+transform = Transform3D(-10, 0, -8.742278e-07, 0, 10, 0, 8.742278e-07, 0, -10, 0, 0, 0)

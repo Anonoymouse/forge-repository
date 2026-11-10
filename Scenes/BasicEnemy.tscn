@@ -15,6 +15,8 @@ albedo_color = Color(0.25882354, 0.38431373, 0, 1)
 
 [node name="BasicEnemy" type="StaticBody3D" unique_id=536068101]
 script = ExtResource("1_6njx4")
+attack_range = 15.0
+fire_interval = 1.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=579990672]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)

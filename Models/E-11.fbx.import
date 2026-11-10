@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://cc466k4lpe0ir"
-path="res://.godot/imported/QBZ-97-AR-A1.fbx-490c5118fbd0dea5a6b7e18903e9168e.scn"
+uid="uid://dm7mtythi0hxg"
+path="res://.godot/imported/E-11.fbx-aa1b6ff29d40a81cc0002e812affaa8e.scn"
 
 [deps]
 
-source_file="res://Models/odqbz-97-ar-a1-97/source/QBZ-97-AR-A1.fbx"
-dest_files=["res://.godot/imported/QBZ-97-AR-A1.fbx-490c5118fbd0dea5a6b7e18903e9168e.scn"]
+source_file="res://Models/E-11.fbx"
+dest_files=["res://.godot/imported/E-11.fbx-aa1b6ff29d40a81cc0002e812affaa8e.scn"]
 
 [params]
 
@@ -26,7 +26,7 @@ nodes/use_node_type_suffixes=true
 meshes/ensure_tangents=true
 meshes/generate_lods=true
 meshes/create_shadow_meshes=true
-meshes/light_baking=0
+meshes/light_baking=1
 meshes/lightmap_texel_size=0.2
 meshes/force_disable_compression=false
 skins/use_named_skins=true

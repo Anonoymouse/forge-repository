@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="WeaponData" format=3 uid="uid://bd3kpdy7nktu0"]
 
-[ext_resource type="PackedScene" uid="uid://c8kl8v2xo4uww" path="res://Scenes/StandardBlaster.tscn" id="1_6i7f0"]
+[ext_resource type="PackedScene" uid="uid://xfnguwv4y1e6" path="res://Scenes/StandardBlaster.tscn" id="1_6i7f0"]
 [ext_resource type="PackedScene" uid="uid://ff6ht5agf7id" path="res://Scenes/blasterbolt.tscn" id="2_ku6qa"]
 [ext_resource type="Script" uid="uid://b1bj8wybi2rkf" path="res://Scripts/weapon_data.gd" id="3_xvwpx"]
 
